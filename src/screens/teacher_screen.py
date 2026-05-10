@@ -44,7 +44,10 @@ def teacher_dashboard():
     with c1:
         header_dashboard()
     with c2:
-        st.subheader(f"""Welcome, {teacher_data['name']} """)
+        st.markdown(
+    f"<h3 style='color:black;'>Welcome, {teacher_data['name']}</h3>",
+    unsafe_allow_html=True
+)
         if st.button("Logout", type='secondary', key='loginbackbtn', shortcut="control+backspace"):
             st.session_state['is_logged_in'] = False
             del st.session_state.teacher_data 
@@ -102,7 +105,7 @@ def teacher_tab_take_attendance():
     subjects = get_teacher_subjects(teacher_id)
 
     if not subjects:
-        st.warning('You havent created any subjects yet! Please create one to begin!')
+        st.info('You havent created any subjects yet! Please create one to begin!')
         return
     
     subject_options = {f"{s['name']} - {s['subject_code']}": s['subject_id'] for s in subjects}

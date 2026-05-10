@@ -7,6 +7,8 @@ try:
     from supabase import create_client
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-except Exception:
-    print("⚠️ Running without Supabase")
+    
+
+except Exception as e:
+    st.error(f"❌ Supabase connection failed: {e}")
     supabase = None
