@@ -195,14 +195,14 @@ def teacher_tab_manage_subjects():
     # LIST all SUBJECTS
     subjects = get_teacher_subjects(teacher_id)
     if subjects:
-        for sub in subjects:
+        for idx, sub in enumerate(subjects):
             stats = [
                 ("🫂", "Students", sub['total_students']),
                 ("🕰️", "Classes", sub['total_classes']),
             ]
 
-            def share_btn(sub=sub):
-                if st.button(f"Share Code: {sub['name']}", key=f"share_{sub['subject_code']}", icon=":material/share:"):
+            def share_btn(sub=sub, idx=idx):
+                if st.button(f"Share Code: {sub['name']}", key=f"share_{sub['subject_id']}_{idx}", icon=":material/share:"):
                     share_subject_dialog(sub['name'], sub['subject_code'])
                 st.space()
 
